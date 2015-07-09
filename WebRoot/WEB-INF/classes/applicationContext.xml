@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/cmframe?useUnicode=true&amp;characterEncoding=UTF-8"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				 <!-- prop key="hibernate.hbm2ddl.auto">create</prop -->
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>cn/commonframework/test/Customer.hbm.xml</value>
+				<value>cn/commonframework/security/model/User.hbm.xml</value>
+				<value>cn/commonframework/security/model/Role.hbm.xml</value>
+				<value>cn/commonframework/security/model/Resource.hbm.xml</value>				
+				<value>cn/commonframework/security/model/Menu.hbm.xml</value>
+				<value>cn/commonframework/organization/model/OrganType.hbm.xml</value>
+				<value>cn/commonframework/organization/model/Organ.hbm.xml</value>
+				<value>cn/commonframework/organization/model/StruType.hbm.xml</value>
+				<value>cn/commonframework/organization/model/Structure.hbm.xml</value>
+				<value>cn/commonframework/organization/model/StruRule.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="customerDao" class="cn.commonframework.test.CustomerDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="customerService"
+    	class="cn.commonframework.test.CustomerService" >
+    	<property name="customerDao">
+    		<ref bean="customerDao" />
+    	</property>
+    </bean>
+	
+	<bean id="userDao" class="cn.commonframework.security.dao.UserDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="userService" class="cn.commonframework.security.service.UserServiceImpl">
+		<property name="userDao">
+			<ref local="userDao" />
+		</property>
+	</bean>
+	
+	<bean id="userAction" class="cn.commonframework.security.action.UserAction" scope="prototype">
+		<property name="userService">
+			<ref local="userService" />
+		</property>
+		<property name="roleService">
+			<ref local="roleService" />
+		</property>
+		<property name="struTypeService">
+			<ref local="struTypeService" />
+		</property>
+		<property name="structureService">
+			<ref local="structureService" />
+		</property>
+	</bean>
+	
+	<bean id="roleDao" class="cn.commonframework.security.dao.RoleDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="roleService" class="cn.commonframework.security.service.RoleServiceImpl">
+		<property name="roleDao">
+			<ref local="roleDao" />
+		</property>
+	</bean>
+	
+	<bean id="roleAction" class="cn.commonframework.security.action.RoleAction" scope="prototype">
+		<property name="roleService">
+			<ref local="roleService" />
+		</property>
+		<property name="resourceService">
+			<ref local="resourceService" />
+		</property>
+	</bean>
+	
+	<bean id="resourceDao" class="cn.commonframework.security.dao.ResourceDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="resourceService" class="cn.commonframework.security.service.ResourceServiceImpl">
+		<property name="resourceDao">
+			<ref local="resourceDao" />
+		</property>
+	</bean>
+	
+	<bean id="resourceAction" class="cn.commonframework.security.action.ResourceAction" scope="prototype">
+		<property name="resourceService">
+			<ref local="resourceService" />
+		</property>
+	</bean>
+	
+	<bean id="menuDao" class="cn.commonframework.security.dao.MenuDao">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="menuService" class="cn.commonframework.security.service.MenuServiceImpl">
+		<property name="menuDao">
+			<ref local="menuDao" />
+		</property>
+	</bean>
+	
+	<bean id="menuAction" class="cn.commonframework.security.action.MenuAction" scope="prototype">
+		<property name="menuService">
+			<ref local="menuService" />
+		</property>
+	</bean>
+	
+
+	<bean id="organTypeDao" class="cn.commonframework.organization.dao.OrganTypeDao">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="organTypeService" class="cn.commonframework.organization.service.OrganTypeServiceImpl">
+		<property name="organTypeDao">
+			<ref local="organTypeDao" />
+		</property>
+	</bean>
+	
+	<bean id="organTypeAction" class="cn.commonframework.organization.action.OrganTypeAction" scope="prototype">
+		<property name="organTypeService">
+			<ref local="organTypeService" />
+		</property>
+		
+		<property name="organService">
+			<ref local="organService" />
+		</property>
+		
+		<property name="struRuleService">
+			<ref local="struRuleService" />
+		</property>
+	</bean>
+	
+	<bean id="organDao" class="cn.commonframework.organization.dao.OrganDao">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="organService" class="cn.commonframework.organization.service.OrganServiceImpl">
+		<property name="organDao">
+			<ref local="organDao" />
+		</property>
+	</bean>
+	
+	<bean id="organAction" class="cn.commonframework.organization.action.OrganAction" scope="prototype">
+		<property name="organService">
+			<ref local="organService" />
+		</property>
+		
+		<property name="organTypeService">
+			<ref local="organTypeService" />
+		</property>
+	</bean>
+	
+	<bean id="struTypeDao" class="cn.commonframework.organization.dao.StruTypeDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="struTypeService" class="cn.commonframework.organization.service.StruTypeService">
+		<property name="struTypeDao">
+			<ref bean="struTypeDao"/>
+		</property>
+	
+	</bean>
+	
+	<bean id="struTypeAction" class="cn.commonframework.organization.action.StruTypeAction" scope="prototype">
+		<property name="struTypeService">
+			<ref bean="struTypeService"/>
+		</property>
+		<property name="structureService">
+			<ref local="structureService" />
+		</property>
+	</bean>
+	
+	<bean id="structureDao" class="cn.commonframework.organization.dao.StructureDao">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="structureService" class="cn.commonframework.organization.service.StructureService">
+		<property name="structureDao">
+			<ref local="structureDao" />
+		</property>
+	</bean>
+	
+	<bean id="structureAction" class="cn.commonframework.organization.action.StructureAction" scope="prototype">
+		<property name="structureService">
+			<ref local="structureService" />
+		</property>		
+		<property name="struRuleService">
+			<ref local="struRuleService" />
+		</property>		
+		<property name="organService">
+			<ref local="organService" />
+		</property>
+		<property name="organTypeService">
+			<ref local="organTypeService" />
+		</property>
+		<property name="struTypeService">
+			<ref local="struTypeService" />
+		</property>
+	</bean>
+	
+	<bean id="struRuleDao" class="cn.commonframework.organization.dao.StruRuleDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="struRuleService" class="cn.commonframework.organization.service.StruRuleService">
+		<property name="struRuleDao">
+			<ref bean="struRuleDao"/>
+		</property>
+	</bean>
+	
+	<bean id="struRuleAction" class="cn.commonframework.organization.action.StruRuleAction" scope="prototype">
+		<property name="struRuleService">
+			<ref local="struRuleService" />
+		</property>
+		<property name="organTypeService">
+			<ref local="organTypeService" />
+		</property>
+		<property name="struTypeService">
+			<ref local="struTypeService" />
+		</property>
+	</bean>	
+	
+	<!-- Transaction manager for a single JDBC DataSource -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--  Transaction interceptor  -->
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+         <property name="transactionManager" ref="transactionManager" />
+         <property name="transactionAttributes">
+              <props>
+                   <prop key="*">PROPAGATION_REQUIRED</prop>
+              </props>
+         </property>
+    </bean>
+
+	<!-- BeanName auto proxy to define the interceptor -->
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+         <property name="beanNames">
+              <list>
+                   <value>*Service</value>
+              </list>
+         </property>
+         <property name="interceptorNames">
+              <list>
+                   <value>transactionInterceptor</value>
+              </list>
+         </property>
+     </bean>   
+    
+    <bean id="securityManager"
+    	class="cn.commonframework.security.SecurityManager">
+    	<property name="userDao">
+    		<ref bean="userDao" />
+    	</property>
+    	<property name="resourceDao">
+    		<ref bean="resourceDao" />
+    	</property>
+    </bean>
+
+</beans>

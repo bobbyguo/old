@@ -1,0 +1,156 @@
+body,a,table,td,th,input,textarea,button,select{ font: 12px/16px Verdana,sans-serif;LINE-HEIGHT: 22px;}
+form{	margin: 0px;}
+BODY {
+	FONT-FAMILY: Arial;
+	background-color: #398DCF;
+	font-size: 12px;
+	margin: 0px;
+	background-repeat: repeat-x;
+	background-position: top;
+	line-height: 200%;
+	color: #FFFFFF;
+}
+
+a:link {color: #ffffff;text-decoration: none;}
+a:visited {text-decoration: none;color: #ffffff;}
+a:hover {text-decoration: underline;color: #ffffcc;}
+a:active {text-decoration: none;color: #ffffcc;}
+
+/*  �����////////////////////////////////////////////////////////////////////////////////*/
+.input_name{
+	height: 20px;
+	width: 158px;
+	background-image: url(../images/Member_Input_Username.png);
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+}
+.input_pass{
+	height: 20px;
+	width: 158px;
+	background-image: url(../images/Member_Input_Password.png);
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+}
+
+.input_validate{
+	height: 20px;
+	width: 80px;
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+	background-color: #213279;
+}
+.input_general{
+	height: 20px;
+	width: 100px;
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+	background-color: #213279;
+}
+
+.input_general1{
+	height: 20px;
+	width: 100px;
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+	background-color: #213279;
+}
+
+.input_SmallInput {
+	height: 20px;
+	width: 100px;
+	border: 1px solid #6B7C97;
+	color: #FFFFFF;
+	background-color: #213279;
+}
+
+/*  ��ť////////////////////////////////////////////////////////////////////////////////*/
+.button{
+	height: 22px;
+	width: 78px;
+	color: #FFFFFF;
+	background-image: url(../images/Member_Button_Bg.png);
+	border: 1px solid #000066;
+}
+
+.del_button{
+	BORDER-RIGHT: #666666 1px solid;
+	BORDER-TOP: #666666 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-LEFT: #666666 1px solid;
+	BORDER-BOTTOM: #666666 1px solid;
+	HEIGHT: 20px;
+	WIDTH: 45px;
+	BACKGROUND-COLOR: #ffffff;	
+}
+
+
+/*  t��///////////////////////////////////////////////////////////////////////////////*/
+a.list1{
+	font-size: 12px;
+	padding-left: 35px;
+	height: 20px;
+	display: block;color:#ffffff
+}
+
+a.list1:link{text-decoration:none;}
+a.list1:visited{text-decoration:none;}
+a.list1:hover{
+	color:#FFFFCC;
+	text-decoration:underline;
+	background-image: url(../images/Member_Ico_Help.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-color: #478CC3;
+} 
+
+a.Menu_Color{
+	font-size: 12px;
+	color: #000;
+	line-height: 200%;
+}
+a.Menu_Color:link{color:#000;}
+a.Menu_Color:visited{color:#000;}
+a.Menu_Color:hover{
+	color:#000;
+} 
+
+/*  ����///////////////////////////////////////////////////////////////////////////////*/
+.Caption_14B_FFC
+{
+	font-size: 14px;
+	color: #FFFFCC;
+	font-weight: bold;
+}
+.Caption_14B_FFF
+{
+	font-size: 14px;
+	color: #FFF;
+	font-weight: bold;
+}
+.Caption_14B_000
+{
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+}
+
+.Caption_12B_000
+{
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;
+}
+
+
+.Caption_12_000
+{
+	color: #000;
+}
+
+
+.Right_table{
+	background-image: url(../images/Member_Manage_Right_C.png);
+	background-repeat: repeat-x;
+	background-position: top;
+	background-color: #98c2e6;
+}

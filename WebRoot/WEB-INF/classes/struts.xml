@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.i18n.encoding" value="GBK"/>
+    <constant name="struts.action.extension" value="action,," />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.configuration.xml.reload" value="true"></constant>
+    <include file="struts-default.xml"/>
+    
+	<package name="default" extends="struts-default">
+		<action name="*UserAction" class="userAction" method="{1}">
+			<result name="forEdit">/user/user_edit.jsp</result>
+			<result name="forAdd">/user/user_add.jsp</result>
+			<result>/user/user_detail.jsp</result>
+		</action>
+		
+		<action name="roleAction" class="cn.commonframework.security.action.RoleAction">
+			<result name="add">/role/role_add.jsp</result>
+			<result name="edit">/role/role_edit.jsp</result>
+			<result name="getAll">/role/role_list.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">roleAction</param>
+				<param name="method">getAllRole</param>
+			</result>
+		</action>
+		
+		<action name="resourceAction" class="cn.commonframework.security.action.ResourceAction">
+			<result name="add">/resource/resource_add.jsp</result>
+			<result name="edit">/resource/resource_edit.jsp</result>
+			<result name="getAll">/resource/resource_list.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">resourceAction</param>
+				<param name="method">getAllResource</param>
+			</result>
+		</action>
+		
+		<action name="menuAction" class="cn.commonframework.security.action.MenuAction">
+			<result name="success">/menu/menuTree.jsp</result>
+		</action>
+		
+		<action name="organTypeAction" class="cn.commonframework.organization.action.OrganTypeAction">
+			<result name="add">/organization/organType/organType_add.jsp</result>
+			<result name="edit">/organization/organType/organType_edit.jsp</result>
+			<result name="getAll">/organization/organType/organType_list.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">organTypeAction</param>
+				<param name="method">getAllOrganType</param>
+			</result>
+		</action>
+		
+		<action name="organAction" class="cn.commonframework.organization.action.OrganAction">
+			<result name="add">/organization/organ/organ_add.jsp</result>
+			<result name="edit">/organization/organ/organ_edit.jsp</result>
+			<result name="getAll">/organization/organ/organ_list.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">organAction</param>
+				<param name="method">getAllOrgan</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="organization" extends="struts-default" namespace="/organization">
+		<action name="*StruType" class="struTypeAction" method="{1}">
+			<result name="list">/commonFramework/organization/struType/struType_list.jsp</result>
+			<result name="forEdit">/commonFramework/organization/struType/struType_edit.jsp</result>
+			<result name="forAdd">/commonFramework/organization/struType/struType_add.jsp</result>
+			<result name="forManage">/commonFramework/organization/structure/structureIndex.jsp</result>
+			<result>/commonFramework/organization/struType/struType_detail.jsp</result>
+		</action>
+		
+		<action name="*OrganTypeAction" class="organTypeAction" method="{1}">
+			<result name="list">/commonFramework/organization/organType/organType_list.jsp</result>
+			<result name="forEdit">/commonFramework/organization/organType/organType_edit.jsp</result>
+			<result name="forAdd">/commonFramework/organization/organType/organType_add.jsp</result>
+			<result>/commonFramework/organization/organType/organType_detail.jsp</result>
+		</action>
+		
+		<action name="*OrganAction" class="organAction" method="{1}">
+			<result name="list">/commonFramework/organization/organ/organ_list.jsp</result>
+			<result name="forEdit">/commonFramework/organization/organ/organ_edit.jsp</result>
+			<result name="forAdd">/commonFramework/organization/organ/organ_add.jsp</result>
+			<result>/commonFramework/organization/organ/organ_detail.jsp</result>
+		</action>
+		
+		<action name="*StruRuleAction" class="struRuleAction" method="{1}">
+			<result name="list">/commonFramework/organization/struRule/struRule_list.jsp</result>
+			<result name="forEdit">/commonFramework/organization/struRule/struRule_edit.jsp</result>
+			<result name="forAdd">/commonFramework/organization/struRule/struRule_add.jsp</result>
+			<result>/commonFramework/organization/struRule/struRule_detail.jsp</result>
+		</action>
+		
+		<action name="*StructureAction" class="structureAction" method="{1}">
+			<result name="list">/commonFramework/organization/structure/structure_list.jsp</result>
+			<result name="forEdit">/commonFramework/organization/structure/structure_edit.jsp</result>
+			<result name="forAdd">/commonFramework/organization/structure/structure_add.jsp</result>
+			<result name="delete">/commonFramework/organization/structure/structureIndex.jsp</result>
+			<result>/commonFramework/organization/structure/structure_detail.jsp</result>
+		</action>
+	</package>
+</struts>

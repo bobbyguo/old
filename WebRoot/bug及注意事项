@@ -1,0 +1,28 @@
+一、开发过程中存在的bug：
+1、在进行数据查询时，点击分页组件中的所有链接的时候报错为：
+      WARN OgnlValueStack:49 - Error setting expression 'd-16544-p' with 
+      value '[Ljava.lang.String;@1bb725a'
+	注：但是不影响程序的运行
+	
+	解决方法:修改displaytag相关源文件修改参数名称中的"-"为"_"。
+
+二、开发过程中存在问题 ：
+1、存在问题 ：在进行数据添加的时候，采用chain链的情况下，如果在.save操作后不加这样一句话就会报错，
+	例如在UserAction中，要加入user = new User()，才可以正常显示用户列表，否则报错为id was alerted
+	from fdfdfd521212fd2f12d to
+	
+	解释：当结果类型为ActionChain时，前一个Action的状态会传递到转向的Action中，
+	故必要时需清空上一个Action传过来的对象状态。
+
+2、角色绑定资源绑定不上，同时用户拥有的被刚修改的角色将被剔除
+	
+	解释：hibernate映射文件配置问题，已解决。
+
+三、开发过程中解决的问题：	
+1、解决出现IE不能打开指定站点的问题  已终止操作的问题。
+	原因：javascript问题，只要在<script>中加入defer="defer"，即可解决此问题
+2、添加资源后，并将该资源赋给某个角色，重新启动服务，但是其他没有该角色的用户仍然能访问该资源
+	原因：jsp页面链接的问题，将s:submit标签换为input标签且type为button，修改下链接即可
+四、配置时注意事项：
+1、Struts2跟Spring整合时，因struts.xml里已配置Struts2的Action交由Spring来管理，在Spring配置文件里
+配置Action时，务必设scope="prototype"(或scope="request" 未测试)。

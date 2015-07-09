@@ -1,0 +1,1 @@
+此框架是基于Struts2.1.6+Spring2.5+Hibernate3.2搭建的，使用jdk1.5或以上版本，tomcat6.0版本

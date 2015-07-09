@@ -1,5 +1,14 @@
 old project written in 2009
 
+http://sishuok.com/forum/blogCategory/showByCategory/40/77.html?user_id=2
+
+http://www.educity.cn/wenda/107096.html
+
+http://chen-rojer-gmail-com.iteye.com/blog/1037973
+
+http://www.javake.com.cn/web/spring/20121214/371.html
+
+
 http://blog.csdn.net/jaune161/article/category/1829905
 
 http://blog.csdn.net/feng27156/article/details/42007341
